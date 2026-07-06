@@ -1,7 +1,7 @@
 {
   "show": {
     "strip": true,
-    "sobre": false,
+    "sobre": true,
     "servicos": false,
     "sinais": false,
     "processo": false,
@@ -11,14 +11,14 @@
   "text": {
     "hero_title": "Cada criança aprende do",
     "hero_script": "seu jeito",
-    "hero_lead": "Avaliação e atendimento psicopedagógico para dificuldades de aprendizagem em crianças e adolescentes, com um olhar acolhedor para a família e a escola.",
+    "hero_lead": "Avaliação e atendimento psicopedagógico para dificuldades de aprendizagem em crianças, com um olhar acolhedor para a família e a escola.",
     "about_hi": "Olá, sou a Kelli",
     "about_h2": "Psicopedagoga",
     "about_p1": "Dedico meu trabalho a entender como cada pessoa aprende — e o que pode estar dificultando esse processo. Acredito que, com o olhar certo e o apoio adequado, toda criança pode reencontrar o prazer de aprender.",
     "about_p2": "[Espaço para a Kelli contar a história dela: formação, abordagem, o que a motiva. Substitua este parágrafo pelo texto real.]",
     "strip1b": "+10 anos",
     "strip1s": "de experiência na área (ajuste)",
-    "strip2b": "Crianças e adolescentes",
+    "strip2b": "Crianças",
     "strip2s": "e orientação a pais e escolas",
     "strip3b": "Presencial",
     "strip3s": "em Curitiba/PR (ou online)",
@@ -109,13 +109,13 @@
       "show": true,
       "open": true,
       "q": "O que faz uma psicopedagoga?",
-      "a": "A psicopedagoga estuda como a pessoa aprende e atua sobre as dificuldades de aprendizagem, ajudando a criança ou o adolescente a desenvolver melhor seu potencial, em parceria com a família e a escola."
+      "a": "A psicopedagoga estuda como a pessoa aprende e atua sobre as dificuldades de aprendizagem, ajudando a criança a desenvolver melhor seu potencial, em parceria com a família e a escola."
     },
     {
       "show": true,
       "open": false,
       "q": "Com qual idade o atendimento é indicado?",
-      "a": "[Ajuste conforme a atuação da Kelli.] Em geral, o trabalho atende crianças e adolescentes em idade escolar, mas o ideal é conversarmos sobre o caso específico."
+      "a": "[Ajuste conforme a atuação da Kelli.] Em geral, o trabalho atende crianças em idade escolar, mas o ideal é conversarmos sobre o caso específico."
     },
     {
       "show": true,
