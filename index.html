@@ -232,11 +232,11 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
       <span>Kelli Limont</span>
     </a>
     <nav class="nav-links" aria-label="Menu principal">
-      <a href="#sobre">Sobre</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#processo">Como funciona</a>
-      <a href="#faq">Dúvidas</a>
-      <a href="#contato">Contato</a>
+      <a href="#sobre" data-cfg-navlink="sobre">Sobre</a>
+      <a href="#servicos" data-cfg-navlink="servicos">Serviços</a>
+      <a href="#processo" data-cfg-navlink="processo">Como funciona</a>
+      <a href="#faq" data-cfg-navlink="faq">Dúvidas</a>
+      <a href="#contato" data-cfg-navlink="contato">Contato</a>
     </nav>
     <div class="nav-cta">
       <a href="#contato" class="btn btn-ghost">Localização</a>
@@ -414,11 +414,11 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
       </div>
       <div>
         <h4>Navegação</h4>
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#processo">Como funciona</a>
-        <a href="#faq">Dúvidas</a>
-        <a href="#contato">Contato</a>
+        <a href="#sobre" data-cfg-navlink="sobre">Sobre</a>
+        <a href="#servicos" data-cfg-navlink="servicos">Serviços</a>
+        <a href="#processo" data-cfg-navlink="processo">Como funciona</a>
+        <a href="#faq" data-cfg-navlink="faq">Dúvidas</a>
+        <a href="#contato" data-cfg-navlink="contato">Contato</a>
       </div>
       <div>
         <h4>Contato</h4>
@@ -521,6 +521,11 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
   function applyToggles(){
     document.querySelectorAll('[data-cfg-show]').forEach(function(el){
       var k=el.getAttribute('data-cfg-show');
+      if(cfg.show && cfg.show[k]===false) el.style.display='none';
+    });
+    // esconde os links do menu/rodapé quando a seção correspondente está desligada
+    document.querySelectorAll('[data-cfg-navlink]').forEach(function(el){
+      var k=el.getAttribute('data-cfg-navlink');
       if(cfg.show && cfg.show[k]===false) el.style.display='none';
     });
   }
