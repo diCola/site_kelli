@@ -20,7 +20,8 @@ window.SITE_DEFAULTS = {
     strip1b: "+10 anos", strip1s: "de experiência na área (ajuste)",
     strip2b: "Crianças e adolescentes", strip2s: "e orientação a pais e escolas",
     strip3b: "Presencial", strip3s: "em Curitiba/PR (ou online)",
-    endereco: "Av. Presidente Arthur da Silva Bernardes, 286 – sala 20 · Portão, Curitiba/PR · 80320-300"
+    endereco: "Av. Presidente Arthur da Silva Bernardes, 286 – sala 20 · Portão, Curitiba/PR · 80320-300",
+    footer_desc: "Psicopedagoga em Curitiba/PR. Avaliação e atendimento psicopedagógico para crianças e adolescentes, com cuidado para a família e a escola."
   },
   link: {
     whatsapp: "https://wa.link/59lnc0",
