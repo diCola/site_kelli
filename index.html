@@ -382,17 +382,17 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
       </div>
     </div>
 
-    <div class="form">
-      <h3 style="font-size:1.3rem;margin-bottom:6px">Deixe sua mensagem</h3>
-      <p style="color:var(--ink-soft);font-size:.92rem">Respondo o quanto antes. Prefere algo imediato? Use o WhatsApp.</p>
-      <label for="nome">Seu nome</label>
-      <input id="nome" type="text" placeholder="Como posso te chamar?">
-      <label for="contato-f">WhatsApp ou e-mail</label>
-      <input id="contato-f" type="text" placeholder="(41) 9 ____-____">
-      <label for="msg">Mensagem</label>
-      <textarea id="msg" rows="4" placeholder="Conte um pouco sobre o que está buscando…"></textarea>
-      <a id="enviar" class="btn btn-primary" href="#">Enviar mensagem</a>
-      <a class="btn btn-pink" style="width:100%;margin-top:12px" href="https://wa.link/59lnc0" data-cfg-href="whatsapp" rel="noopener">Prefiro o WhatsApp</a>
+    <div class="form" style="display:flex;flex-direction:column;justify-content:center;text-align:center">
+      <div style="width:64px;height:64px;border-radius:50%;background:#25D366;display:grid;place-items:center;margin:0 auto 18px">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2Zm5.3 14.13c-.22.62-1.3 1.2-1.8 1.24-.46.04-.46.37-2.9-.6-2.45-.98-3.96-3.5-4.08-3.66-.12-.16-.97-1.3-.97-2.47 0-1.18.62-1.76.83-2 .22-.24.48-.3.64-.3l.46.01c.15 0 .35-.06.54.41.2.5.67 1.7.73 1.82.06.12.1.26.02.42-.08.16-.12.26-.24.4l-.36.42c-.12.12-.24.25-.1.49.14.24.62 1.02 1.32 1.65.9.8 1.66 1.05 1.9 1.17.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.16 1.2Z"/></svg>
+      </div>
+      <h3 style="font-size:1.35rem;margin-bottom:8px">Fale comigo pelo WhatsApp</h3>
+      <p style="color:var(--ink-soft);font-size:.98rem;max-width:34ch;margin:0 auto 22px">O jeito mais rápido de tirar dúvidas e agendar. Me chame que eu respondo pessoalmente.</p>
+      <a class="btn btn-primary" style="width:100%" href="https://wa.link/59lnc0" data-cfg-href="whatsapp" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2Zm5.3 14.13c-.22.62-1.3 1.2-1.8 1.24-.46.04-.46.37-2.9-.6-2.45-.98-3.96-3.5-4.08-3.66-.12-.16-.97-1.3-.97-2.47 0-1.18.62-1.76.83-2 .22-.24.48-.3.64-.3l.46.01c.15 0 .35-.06.54.41.2.5.67 1.7.73 1.82.06.12.1.26.02.42-.08.16-.12.26-.24.4l-.36.42c-.12.12-.24.25-.1.49.14.24.62 1.02 1.32 1.65.9.8 1.66 1.05 1.9 1.17.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.16 1.2Z"/></svg>
+        Conversar agora
+      </a>
+      <p style="color:var(--ink-soft);font-size:.82rem;margin-top:14px">Atendimento humanizado · resposta o quanto antes</p>
     </div>
   </div>
 </section>
@@ -559,14 +559,6 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
 </script>
 <script>
   document.getElementById('ano').textContent = new Date().getFullYear();
-  document.getElementById('enviar').addEventListener('click', function(e){
-    e.preventDefault();
-    var nome = encodeURIComponent(document.getElementById('nome').value || '');
-    var contato = encodeURIComponent(document.getElementById('contato-f').value || '');
-    var msg = encodeURIComponent(document.getElementById('msg').value || '');
-    var corpo = 'Nome: '+nome+'%0D%0AContato: '+contato+'%0D%0A%0D%0A'+msg;
-    window.location.href = 'mailto:kelli.limont@gmail.com?subject=Contato%20pelo%20site&body='+corpo;
-  });
 </script>
 </body>
 </html>
