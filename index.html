@@ -11,7 +11,7 @@
 <meta name="description" content="Psicopedagoga em Curitiba. Avaliação e intervenção psicopedagógica para dificuldades de aprendizagem em crianças e adolescentes. Agende sua conversa pelo WhatsApp.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Kelli Limont">
-<link rel="canonical" href="https://kellilimont.com.br/">
+<link rel="canonical" href="https://SEU-DOMINIO.com.br/">
 
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="apple-touch-icon" href="./favicon.png">
@@ -22,8 +22,8 @@
 <meta property="og:site_name" content="Kelli Limont – Psicopedagoga">
 <meta property="og:title" content="Kelli Limont | Psicopedagoga em Curitiba">
 <meta property="og:description" content="Avaliação e intervenção psicopedagógica para dificuldades de aprendizagem. Atendimento humanizado em Curitiba.">
-<meta property="og:url" content="https://kellilimont.com.br/">
-<meta property="og:image" content="https://kellilimont.com.br/assets/og-image.jpg">
+<meta property="og:url" content="https://SEU-DOMINIO.com.br/">
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- FONTES DA MARCA -->
@@ -298,12 +298,7 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
       <h2 data-cfg-text="about_h2">Psicopedagoga</h2>
       <p data-cfg-text="about_p1">Dedico meu trabalho a entender <strong>como cada pessoa aprende</strong> — e o que pode estar dificultando esse processo. Acredito que, com o olhar certo e o apoio adequado, toda criança pode reencontrar o prazer de aprender.</p>
       <p data-cfg-text="about_p2"><em>[Espaço para a Kelli contar a história dela: formação, abordagem, o que a motiva. Substitua este parágrafo pelo texto real.]</em></p>
-      <div class="creds">
-        <span class="chip">Formação em Psicopedagogia</span>
-        <span class="chip">Avaliação psicopedagógica</span>
-        <span class="chip">Intervenção individualizada</span>
-        <span class="chip">[registro / pós-graduação]</span>
-      </div>
+      <div class="creds" id="chips-render"></div>
     </div>
   </div>
 </section>
@@ -456,8 +451,8 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
   "@type":"MedicalBusiness",
   "name":"Kelli Limont – Psicopedagoga",
   "description":"Avaliação e atendimento psicopedagógico para dificuldades de aprendizagem em crianças e adolescentes em Curitiba/PR.",
-  "url":"https://kellilimont.com.br/",
-  "image":"https://kellilimont.com.br/assets/og-image.jpg",
+  "url":"https://SEU-DOMINIO.com.br/",
+  "image":"https://SEU-DOMINIO.com.br/assets/og-image.jpg",
   "telephone":"+55-41-00000-0000",
   "email":"kelli.limont@gmail.com",
   "priceRange":"$$",
@@ -500,6 +495,14 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
       return '<article class="card">'+svgIco(s)+t.outerHTML+p.outerHTML+'</article>';
     }).join('');
   }
+  function renderChips(){
+    var el = document.getElementById('chips-render'); if(!el) return;
+    var list = cfg.chips || [];
+    el.innerHTML = list.filter(function(c){return c.show!==false;}).map(function(c){
+      var s=document.createElement('span'); s.className='chip'; s.textContent=c.text;
+      return s.outerHTML;
+    }).join('');
+  }
   function renderSigns(){
     var el = document.getElementById('signs-render'); if(!el) return;
     el.innerHTML = cfg.signs.filter(function(s){return s.show!==false;}).map(function(s){
@@ -538,12 +541,12 @@ footer{background:var(--head);color:#D9D5EC;padding:56px 0 30px}
     ['show','text','link'].forEach(function(g){
       if(loaded[g]) cfg[g]=Object.assign({}, cfg[g], loaded[g]);
     });
-    ['services','signs','faq'].forEach(function(g){
+    ['services','chips','signs','faq'].forEach(function(g){
       if(Array.isArray(loaded[g])) cfg[g]=loaded[g];
     });
   }
   function applyAll(){
-    renderServices(); renderSigns(); renderFaq();
+    renderServices(); renderChips(); renderSigns(); renderFaq();
     applyToggles(); applyText(); applyLinks();
   }
   // tenta carregar content.json (no Vercel); se falhar, usa os padrões

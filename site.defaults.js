@@ -34,6 +34,12 @@ window.SITE_DEFAULTS = {
     { show: true, icon: "blue",   stroke: "#fff",    title: "[Outro serviço]", desc: "Espaço livre para incluir um serviço específico que a Kelli ofereça (ex.: reforço, dificuldades específicas, etc.).", svg: '<path d="M12 2v20M2 12h20"/>' },
     { show: true, icon: "indigo", stroke: "#fff",    title: "Conversa inicial", desc: "Um primeiro contato sem compromisso para entender a sua necessidade e indicar o melhor caminho.", svg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' }
   ],
+  chips: [
+    { show: true, text: "Formação em Psicopedagogia" },
+    { show: true, text: "Avaliação psicopedagógica" },
+    { show: true, text: "Intervenção individualizada" },
+    { show: true, text: "[registro / pós-graduação]" }
+  ],
   signs: [
     { show: true, text: "Dificuldade persistente com leitura ou escrita" },
     { show: true, text: "Falta de atenção e concentração nas tarefas" },

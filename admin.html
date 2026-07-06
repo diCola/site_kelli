@@ -116,6 +116,14 @@ code{background:#F3F2EA;padding:1px 6px;border-radius:5px;font-size:.85em}
       <label>Sobre — parágrafo 2</label><textarea data-text="about_p2"></textarea>
     </div>
 
+    <!-- CREDENCIAIS (chips do Sobre) -->
+    <div class="card">
+      <h2>Credenciais (etiquetas do "Sobre")</h2>
+      <p class="muted">As etiquetas que aparecem na seção Sobre. Ligue/desligue, edite ou remova.</p>
+      <div id="chips"></div>
+      <button class="btn ghost sm" onclick="addChip()" style="margin-top:10px">+ Adicionar credencial</button>
+    </div>
+
     <!-- FAIXA (números) -->
     <div class="card">
       <h2>Faixa de destaque</h2>
@@ -199,14 +207,14 @@ function init(){
     .then(function(loaded){
       if(loaded){
         ['show','text','link'].forEach(function(g){ if(loaded[g]) data[g]=Object.assign({},data[g],loaded[g]); });
-        ['services','signs','faq'].forEach(function(g){ if(Array.isArray(loaded[g])) data[g]=loaded[g]; });
+        ['services','chips','signs','faq'].forEach(function(g){ if(Array.isArray(loaded[g])) data[g]=loaded[g]; });
         document.getElementById('status').textContent = "content.json carregado";
       }
     }).catch(function(){}).finally(renderAll);
 }
 
 /* ====== RENDER ====== */
-function renderAll(){ renderSections(); bindTexts(); renderServices(); renderSigns(); renderFaq(); }
+function renderAll(){ renderSections(); bindTexts(); renderServices(); renderChips(); renderSigns(); renderFaq(); }
 
 function renderSections(){
   var el=document.getElementById('sections'); el.innerHTML='';
@@ -255,6 +263,21 @@ function renderServices(){
   });
 }
 function addService(){ data.services.push({show:true,icon:"indigo",stroke:"#fff",title:"Novo serviço",desc:"Descrição do serviço.",svg:DEFAULT_SVG}); renderServices(); }
+
+function renderChips(){
+  var el=document.getElementById('chips'); el.innerHTML='';
+  (data.chips||[]).forEach(function(c,idx){
+    var box=document.createElement('div'); box.className='item';
+    box.innerHTML='<div class="head"><div class="left"><input type="checkbox" '+(c.show!==false?'checked':'')+'> Publicado</div>'+
+      '<button class="btn danger sm">Excluir</button></div><input type="text" value="">';
+    box.querySelector('input[type=text]').value=c.text||'';
+    box.querySelector('input[type=checkbox]').addEventListener('change',function(e){c.show=e.target.checked;});
+    box.querySelector('input[type=text]').addEventListener('input',function(e){c.text=e.target.value;});
+    box.querySelector('.danger').addEventListener('click',function(){data.chips.splice(idx,1);renderChips();});
+    el.appendChild(box);
+  });
+}
+function addChip(){ if(!data.chips) data.chips=[]; data.chips.push({show:true,text:"Nova credencial"}); renderChips(); }
 
 function renderSigns(){
   var el=document.getElementById('signs'); el.innerHTML='';
