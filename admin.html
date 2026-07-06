@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel · Kelli Limont</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFAF4; --ink:#2E2A5E; --soft-ink:#736FA0; --head:#26206A;
+  --brand:#26206A; --brand-deep:#191350; --accent:#F798C4; --accent-text:#C9447E;
+  --line:#E7DCE4; --white:#fff; --ok:#2E6E5E; --danger:#C0392B;
+  --display:'Cinzel',serif; --body:'Mulish',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.5}
+a{color:var(--brand)}
+.wrap{max-width:920px;margin:0 auto;padding:24px}
+h1{font-family:var(--display);color:var(--head);font-size:1.5rem;letter-spacing:.02em}
+h2{font-family:var(--display);color:var(--head);font-size:1.15rem;margin:0 0 4px}
+.muted{color:var(--soft-ink);font-size:.9rem}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+label{font-weight:600;font-size:.85rem;display:block;margin:12px 0 5px}
+input[type=text],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-family:var(--body);font-size:.95rem;background:var(--paper);color:var(--ink)}
+textarea{min-height:70px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--brand);border-color:var(--brand)}
+.btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;font-family:var(--body);font-weight:700;font-size:.95rem;padding:11px 18px;border-radius:999px;cursor:pointer;border:2px solid transparent;background:var(--brand);color:#fff}
+.btn:hover{background:var(--brand-deep)}
+.btn.ghost{background:transparent;color:var(--brand);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--brand)}
+.btn.pink{background:var(--accent);color:var(--brand)}
+.btn.sm{padding:6px 12px;font-size:.82rem;font-weight:600}
+.btn.danger{background:transparent;color:var(--danger);border-color:var(--line)}
+.toggles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.toggle{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-weight:600;font-size:.92rem}
+.toggle input{width:18px;height:18px;accent-color:var(--brand)}
+.item{border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;background:var(--paper)}
+.item .head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.item .head .left{display:flex;align-items:center;gap:10px;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.badge{display:inline-block;background:var(--soft-ink);color:#fff;border-radius:6px;font-size:.7rem;padding:2px 7px;font-weight:700}
+.bar{position:sticky;top:0;z-index:5;background:rgba(255,250,244,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 24px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+#gate{max-width:380px;margin:12vh auto;text-align:center}
+#gate .card{padding:30px}
+.hidden{display:none}
+.note{background:#FCEFF5;border:1px solid var(--line);border-radius:10px;padding:14px;font-size:.88rem;color:var(--ink)}
+.ok{color:var(--ok);font-weight:700}
+code{background:#F3F2EA;padding:1px 6px;border-radius:5px;font-size:.85em}
+.small{font-size:.8rem}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN (trava simples) ===== -->
+<div id="gate">
+  <div class="card">
+    <h1>Painel da Kelli</h1>
+    <p class="muted" style="margin:8px 0 18px">Digite a senha para editar o site.</p>
+    <input type="password" id="pass" placeholder="Senha" onkeydown="if(event.key==='Enter')entrar()">
+    <div style="margin-top:14px"><button class="btn" onclick="entrar()">Entrar</button></div>
+    <p id="gateErr" class="small" style="color:var(--danger);margin-top:12px"></p>
+  </div>
+</div>
+
+<!-- ===== PAINEL ===== -->
+<div id="app" class="hidden">
+  <div class="bar">
+    <div class="wrap">
+      <div>
+        <strong style="font-family:var(--display);color:var(--head)">Painel · Kelli Limont</strong>
+        <div class="muted small" id="status">Editando conteúdo</div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost sm" onclick="previa()">Pré-visualizar</button>
+        <button class="btn pink sm" onclick="copiar()">Copiar JSON</button>
+        <button class="btn sm" onclick="baixar()">Baixar content.json</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="note">
+      <strong>Como publicar:</strong> edite abaixo, clique em <b>Baixar content.json</b>, coloque o arquivo
+      <code>content.json</code> na mesma pasta do <code>index.html</code>, faça o commit no GitHub e o Vercel
+      republica sozinho. Para testar antes, use <b>Pré-visualizar</b>.
+    </div>
+
+    <!-- SEÇÕES -->
+    <div class="card">
+      <h2>Seções publicadas</h2>
+      <p class="muted">Desmarque para esconder uma seção do site.</p>
+      <div class="toggles" id="sections" style="margin-top:14px"></div>
+    </div>
+
+    <!-- TEXTOS PRINCIPAIS -->
+    <div class="card">
+      <h2>Textos principais</h2>
+      <div class="grid2">
+        <div><label>Título (início)</label><input type="text" data-text="hero_title"></div>
+        <div><label>Palavra em destaque (manuscrito)</label><input type="text" data-text="hero_script"></div>
+      </div>
+      <label>Frase de abertura</label><textarea data-text="hero_lead"></textarea>
+      <div class="grid2">
+        <div><label>Saudação (Sobre)</label><input type="text" data-text="about_hi"></div>
+        <div><label>Título (Sobre)</label><input type="text" data-text="about_h2"></div>
+      </div>
+      <label>Sobre — parágrafo 1</label><textarea data-text="about_p1"></textarea>
+      <label>Sobre — parágrafo 2</label><textarea data-text="about_p2"></textarea>
+    </div>
+
+    <!-- FAIXA (números) -->
+    <div class="card">
+      <h2>Faixa de destaque</h2>
+      <div class="grid2">
+        <div><label>Destaque 1 — título</label><input type="text" data-text="strip1b"></div>
+        <div><label>Destaque 1 — descrição</label><input type="text" data-text="strip1s"></div>
+        <div><label>Destaque 2 — título</label><input type="text" data-text="strip2b"></div>
+        <div><label>Destaque 2 — descrição</label><input type="text" data-text="strip2s"></div>
+        <div><label>Destaque 3 — título</label><input type="text" data-text="strip3b"></div>
+        <div><label>Destaque 3 — descrição</label><input type="text" data-text="strip3s"></div>
+      </div>
+    </div>
+
+    <!-- CONTATO -->
+    <div class="card">
+      <h2>Contato</h2>
+      <label>Endereço</label><input type="text" data-text="endereco">
+      <div class="grid2">
+        <div><label>Link do WhatsApp</label><input type="text" data-link="whatsapp"></div>
+        <div><label>E-mail (com mailto:)</label><input type="text" data-link="email"></div>
+      </div>
+      <p class="muted small" style="margin-top:8px">O link do WhatsApp vale para todos os botões do site.</p>
+    </div>
+
+    <!-- SERVIÇOS -->
+    <div class="card">
+      <h2>Serviços</h2>
+      <p class="muted">Ligue/desligue, edite ou reordene os cards.</p>
+      <div id="services"></div>
+      <button class="btn ghost sm" onclick="addService()" style="margin-top:10px">+ Adicionar serviço</button>
+    </div>
+
+    <!-- SINAIS -->
+    <div class="card">
+      <h2>Sinais (Quando procurar)</h2>
+      <div id="signs"></div>
+      <button class="btn ghost sm" onclick="addSign()" style="margin-top:10px">+ Adicionar sinal</button>
+    </div>
+
+    <!-- FAQ -->
+    <div class="card">
+      <h2>Perguntas frequentes</h2>
+      <div id="faq"></div>
+      <button class="btn ghost sm" onclick="addFaq()" style="margin-top:10px">+ Adicionar pergunta</button>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <button class="btn" onclick="baixar()">Baixar content.json</button>
+      <button class="btn ghost" onclick="restaurar()" style="margin-left:10px">Restaurar padrões</button>
+      <p class="muted small" style="margin-top:12px">Nada é salvo automaticamente — baixe o arquivo para publicar.</p>
+    </div>
+
+  </div>
+</div>
+
+<script src="./site.defaults.js"></script>
+<script>
+/* ====== TRAVA SIMPLES (troque a senha abaixo) ====== */
+var SENHA = "kelli2026";   // <-- altere aqui
+function entrar(){
+  if(document.getElementById('pass').value === SENHA){
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    init();
+  } else {
+    document.getElementById('gateErr').textContent = "Senha incorreta.";
+  }
+}
+
+/* ====== ESTADO ====== */
+var DEFAULT_SVG = '<path d="M12 2v20M2 12h20"/>';
+var data = null;
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+var SEC_LABELS = {strip:"Faixa de destaque",sobre:"Sobre",servicos:"Serviços",sinais:"Quando procurar",processo:"Como funciona",faq:"Perguntas frequentes",contato:"Contato"};
+var ICONS = ["indigo","pink","sage","clay","blue"];
+
+function init(){
+  data = clone(window.SITE_DEFAULTS);
+  fetch('./content.json',{cache:'no-store'})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(loaded){
+      if(loaded){
+        ['show','text','link'].forEach(function(g){ if(loaded[g]) data[g]=Object.assign({},data[g],loaded[g]); });
+        ['services','signs','faq'].forEach(function(g){ if(Array.isArray(loaded[g])) data[g]=loaded[g]; });
+        document.getElementById('status').textContent = "content.json carregado";
+      }
+    }).catch(function(){}).finally(renderAll);
+}
+
+/* ====== RENDER ====== */
+function renderAll(){ renderSections(); bindTexts(); renderServices(); renderSigns(); renderFaq(); }
+
+function renderSections(){
+  var el=document.getElementById('sections'); el.innerHTML='';
+  Object.keys(SEC_LABELS).forEach(function(k){
+    var on = data.show[k]!==false;
+    var d=document.createElement('label'); d.className='toggle';
+    d.innerHTML='<input type="checkbox" '+(on?'checked':'')+'> '+SEC_LABELS[k];
+    d.querySelector('input').addEventListener('change',function(e){ data.show[k]=e.target.checked; });
+    el.appendChild(d);
+  });
+}
+function bindTexts(){
+  document.querySelectorAll('[data-text]').forEach(function(inp){
+    var k=inp.getAttribute('data-text');
+    inp.value = data.text[k]!=null ? data.text[k] : '';
+    inp.addEventListener('input',function(){ data.text[k]=inp.value; });
+  });
+  document.querySelectorAll('[data-link]').forEach(function(inp){
+    var k=inp.getAttribute('data-link');
+    inp.value = data.link[k]!=null ? data.link[k] : '';
+    inp.addEventListener('input',function(){ data.link[k]=inp.value; });
+  });
+}
+function iconOptions(sel){ return ICONS.map(function(i){return '<option value="'+i+'"'+(i===sel?' selected':'')+'>'+i+'</option>';}).join(''); }
+
+function renderServices(){
+  var el=document.getElementById('services'); el.innerHTML='';
+  data.services.forEach(function(s,idx){
+    var box=document.createElement('div'); box.className='item';
+    box.innerHTML =
+      '<div class="head"><div class="left"><input type="checkbox" '+(s.show!==false?'checked':'')+' data-k="show"> Publicado <span class="badge">Cor: '+s.icon+'</span></div>'+
+      '<div><button class="btn ghost sm" data-k="up">↑</button> <button class="btn ghost sm" data-k="down">↓</button> <button class="btn danger sm" data-k="del">Excluir</button></div></div>'+
+      '<div class="grid2"><div><label>Título</label><input type="text" data-k="title" value=""></div>'+
+      '<div><label>Cor do ícone</label><select data-k="icon">'+iconOptions(s.icon)+'</select></div></div>'+
+      '<label>Descrição</label><textarea data-k="desc"></textarea>';
+    box.querySelector('[data-k="title"]').value=s.title||'';
+    box.querySelector('[data-k="desc"]').value=s.desc||'';
+    box.querySelector('[data-k="show"]').addEventListener('change',function(e){s.show=e.target.checked;});
+    box.querySelector('[data-k="title"]').addEventListener('input',function(e){s.title=e.target.value;});
+    box.querySelector('[data-k="desc"]').addEventListener('input',function(e){s.desc=e.target.value;});
+    box.querySelector('[data-k="icon"]').addEventListener('change',function(e){s.icon=e.target.value;renderServices();});
+    box.querySelector('[data-k="del"]').addEventListener('click',function(){data.services.splice(idx,1);renderServices();});
+    box.querySelector('[data-k="up"]').addEventListener('click',function(){if(idx>0){data.services.splice(idx-1,0,data.services.splice(idx,1)[0]);renderServices();}});
+    box.querySelector('[data-k="down"]').addEventListener('click',function(){if(idx<data.services.length-1){data.services.splice(idx+1,0,data.services.splice(idx,1)[0]);renderServices();}});
+    el.appendChild(box);
+  });
+}
+function addService(){ data.services.push({show:true,icon:"indigo",stroke:"#fff",title:"Novo serviço",desc:"Descrição do serviço.",svg:DEFAULT_SVG}); renderServices(); }
+
+function renderSigns(){
+  var el=document.getElementById('signs'); el.innerHTML='';
+  data.signs.forEach(function(s,idx){
+    var box=document.createElement('div'); box.className='item';
+    box.innerHTML='<div class="head"><div class="left"><input type="checkbox" '+(s.show!==false?'checked':'')+'> Publicado</div>'+
+      '<button class="btn danger sm">Excluir</button></div><input type="text" value="">';
+    box.querySelector('input[type=text]').value=s.text||'';
+    box.querySelector('input[type=checkbox]').addEventListener('change',function(e){s.show=e.target.checked;});
+    box.querySelector('input[type=text]').addEventListener('input',function(e){s.text=e.target.value;});
+    box.querySelector('.danger').addEventListener('click',function(){data.signs.splice(idx,1);renderSigns();});
+    el.appendChild(box);
+  });
+}
+function addSign(){ data.signs.push({show:true,text:"Novo sinal"}); renderSigns(); }
+
+function renderFaq(){
+  var el=document.getElementById('faq'); el.innerHTML='';
+  data.faq.forEach(function(f,idx){
+    var box=document.createElement('div'); box.className='item';
+    box.innerHTML='<div class="head"><div class="left"><input type="checkbox" data-k="show" '+(f.show!==false?'checked':'')+'> Publicado &nbsp;'+
+      '<label style="display:inline;font-weight:600;margin:0"><input type="checkbox" data-k="open" '+(f.open?'checked':'')+'> aberta por padrão</label></div>'+
+      '<button class="btn danger sm">Excluir</button></div>'+
+      '<label>Pergunta</label><input type="text" data-k="q" value="">'+
+      '<label>Resposta</label><textarea data-k="a"></textarea>';
+    box.querySelector('[data-k="q"]').value=f.q||'';
+    box.querySelector('[data-k="a"]').value=f.a||'';
+    box.querySelector('[data-k="show"]').addEventListener('change',function(e){f.show=e.target.checked;});
+    box.querySelector('[data-k="open"]').addEventListener('change',function(e){f.open=e.target.checked;});
+    box.querySelector('[data-k="q"]').addEventListener('input',function(e){f.q=e.target.value;});
+    box.querySelector('[data-k="a"]').addEventListener('input',function(e){f.a=e.target.value;});
+    box.querySelector('.danger').addEventListener('click',function(){data.faq.splice(idx,1);renderFaq();});
+    el.appendChild(box);
+  });
+}
+function addFaq(){ data.faq.push({show:true,open:false,q:"Nova pergunta?",a:"Resposta."}); renderFaq(); }
+
+/* ====== EXPORTAR ====== */
+function build(){
+  var out=clone(data);
+  // stroke do ícone: rosa usa traço escuro, os demais branco
+  out.services.forEach(function(s){ s.stroke = (s.icon==='pink') ? '#26206A' : '#fff'; if(!s.svg) s.svg=DEFAULT_SVG; });
+  return JSON.stringify(out,null,2);
+}
+function baixar(){
+  var blob=new Blob([build()],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='content.json'; a.click();
+  document.getElementById('status').textContent="content.json baixado ✓";
+}
+function copiar(){
+  navigator.clipboard.writeText(build()).then(function(){
+    document.getElementById('status').textContent="JSON copiado ✓";
+  });
+}
+function previa(){
+  var blob=new Blob([build()],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var w=window.open('./index.html','_blank');
+  document.getElementById('status').textContent="Abrindo pré-visualização… (usa o content.json publicado)";
+}
+function restaurar(){
+  if(confirm('Restaurar todo o conteúdo para os valores padrão? As alterações não baixadas serão perdidas.')){
+    data=clone(window.SITE_DEFAULTS); renderAll();
+  }
+}
+</script>
+</body>
+</html>

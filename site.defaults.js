@@ -1,0 +1,52 @@
+/* =================================================================
+   CONTEÚDO PADRÃO DO SITE — Kelli Limont
+   Este arquivo é a base. O painel (admin.html) gera um content.json
+   que sobrescreve o que você editar. Se o content.json não existir,
+   o site usa estes valores. NÃO é preciso editar este arquivo à mão.
+   ================================================================= */
+window.SITE_DEFAULTS = {
+  show: {
+    strip: true, sobre: true, servicos: true,
+    sinais: true, processo: true, faq: true, contato: true
+  },
+  text: {
+    hero_title: "Cada criança aprende do",
+    hero_script: "seu jeito",
+    hero_lead: "Avaliação e atendimento psicopedagógico para dificuldades de aprendizagem em crianças e adolescentes, com um olhar acolhedor para a família e a escola.",
+    about_hi: "Olá, sou a Kelli",
+    about_h2: "Psicopedagoga",
+    about_p1: "Dedico meu trabalho a entender como cada pessoa aprende — e o que pode estar dificultando esse processo. Acredito que, com o olhar certo e o apoio adequado, toda criança pode reencontrar o prazer de aprender.",
+    about_p2: "[Espaço para a Kelli contar a história dela: formação, abordagem, o que a motiva. Substitua este parágrafo pelo texto real.]",
+    strip1b: "+10 anos", strip1s: "de experiência na área (ajuste)",
+    strip2b: "Crianças e adolescentes", strip2s: "e orientação a pais e escolas",
+    strip3b: "Presencial", strip3s: "em Curitiba/PR (ou online)",
+    endereco: "Av. Presidente Arthur da Silva Bernardes, 286 – sala 20 · Portão, Curitiba/PR · 80320-300"
+  },
+  link: {
+    whatsapp: "https://wa.link/59lnc0",
+    email: "mailto:kelli.limont@gmail.com"
+  },
+  services: [
+    { show: true, icon: "indigo", stroke: "#fff",    title: "Avaliação psicopedagógica", desc: "Investigação das dificuldades de aprendizagem para entender suas causas e traçar o melhor caminho de intervenção.", svg: '<path d="M9 11H3v10h6V11ZM21 3h-6v18h6V3ZM15 7H9v14h6V7Z"/>' },
+    { show: true, icon: "pink",   stroke: "#26206A", title: "Intervenção e atendimento", desc: "Sessões individualizadas que estimulam atenção, leitura, escrita, raciocínio e autonomia, respeitando o ritmo de cada um.", svg: '<path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="m9 12 2 2 4-4"/>' },
+    { show: true, icon: "sage",   stroke: "#fff",    title: "Orientação a pais", desc: "Apoio à família para entender o processo de aprendizagem e construir uma rotina de estudos saudável em casa.", svg: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>' },
+    { show: true, icon: "clay",   stroke: "#fff",    title: "Orientação escolar", desc: "Diálogo com a escola para alinhar estratégias e garantir que o aluno receba o suporte de que precisa.", svg: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>' },
+    { show: true, icon: "blue",   stroke: "#fff",    title: "[Outro serviço]", desc: "Espaço livre para incluir um serviço específico que a Kelli ofereça (ex.: reforço, dificuldades específicas, etc.).", svg: '<path d="M12 2v20M2 12h20"/>' },
+    { show: true, icon: "indigo", stroke: "#fff",    title: "Conversa inicial", desc: "Um primeiro contato sem compromisso para entender a sua necessidade e indicar o melhor caminho.", svg: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' }
+  ],
+  signs: [
+    { show: true, text: "Dificuldade persistente com leitura ou escrita" },
+    { show: true, text: "Falta de atenção e concentração nas tarefas" },
+    { show: true, text: "Resistência ou ansiedade diante dos estudos" },
+    { show: true, text: "Notas em queda sem causa aparente" },
+    { show: true, text: "Dificuldade em organizar materiais e tempo" },
+    { show: true, text: "Indicação da escola para acompanhamento" }
+  ],
+  faq: [
+    { show: true, open: true,  q: "O que faz uma psicopedagoga?", a: "A psicopedagoga estuda como a pessoa aprende e atua sobre as dificuldades de aprendizagem, ajudando a criança ou o adolescente a desenvolver melhor seu potencial, em parceria com a família e a escola." },
+    { show: true, open: false, q: "Com qual idade o atendimento é indicado?", a: "[Ajuste conforme a atuação da Kelli.] Em geral, o trabalho atende crianças e adolescentes em idade escolar, mas o ideal é conversarmos sobre o caso específico." },
+    { show: true, open: false, q: "Como sei se meu filho precisa de acompanhamento?", a: "Se há dificuldade persistente com leitura, escrita, atenção ou organização, ou se a escola indicou, vale fazer uma avaliação. O primeiro contato pelo WhatsApp já ajuda a esclarecer." },
+    { show: true, open: false, q: "Os atendimentos são presenciais ou online?", a: "[Ajuste.] Os atendimentos são presenciais em Curitiba/PR. Consulte a disponibilidade de atendimento online." },
+    { show: true, open: false, q: "Como faço para agendar?", a: "Basta clicar no botão do WhatsApp aqui no site. Respondo para entender sua necessidade e combinar o melhor horário." }
+  ]
+};
